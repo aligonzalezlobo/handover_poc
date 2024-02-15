@@ -29,12 +29,9 @@ def main():
 
     # At the bottom of the sidebar
     with st.sidebar:
-        # Create an empty space, pushing the content to the bottom
-        for _ in range(100):  # You can adjust the range number to push the logo down as needed
+        for _ in range(100): 
             st.empty()
-
-        # Center the image by using column width or specifying the width in pixels
-        logo_image2 = "images/image2.png"  # Replace with your image path
+        logo_image2 = "images/image2.png"
         st.image(logo_image2, use_column_width=True)
 
 
@@ -170,7 +167,6 @@ def main():
             'client_type' : 'client_type'
         }
 
-        # Apply column renaming and selection
         filtered_data = filtered_data.rename(columns=display_columns)[display_columns.values()]
 
         filtered_data['Frequency Orders'] = filtered_data['Frequency Orders'].round(2)
@@ -210,7 +206,7 @@ def main():
             elif sort_by == "Total Net Sales":
                 filtered_data = filtered_data.sort_values(by="Total Net Sales", ascending=False)
 
-        # Display filtered data without index
+        # Display filtered data
         st.write("Clients of the selected branch:")
         st.write(filtered_data)
 
@@ -280,7 +276,7 @@ def main():
                                 <h4 style="color: #f44336;">Churn Probability</h4>
                                 <h3>{client_data['churn_probability']*100:.2f}%</h3>
                             </div>
-                        """, unsafe_allow_html=True)  # Multiply by 100 if churn_probability is between 0 and 1
+                        """, unsafe_allow_html=True)
                     with col3:
                         st.markdown(f"""
                             <div style="border: 2px solid #2196F3; padding: 10px; border-radius: 5px;">
@@ -331,7 +327,7 @@ def main():
                             x='date_order', 
                             y='sales_net', 
                             title=f'Time Series: Sales Net Over Time (Client ID: {client_id})',
-                            labels={'date_order': 'Date Order', 'sales_net': 'Total Net Sales'}  # Custom axis titles
+                            labels={'date_order': 'Date Order', 'sales_net': 'Total Net Sales'} 
                         )
 
                         st.plotly_chart(fig)
